@@ -25,7 +25,7 @@ namespace Taxually.TechnicalTest.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] VatRegistrationRequest request)
         {
-            _vatRegistrationService.Register(request);
+            await _vatRegistrationService.Register(request);
 
             return Ok();
         }

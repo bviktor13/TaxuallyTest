@@ -9,19 +9,26 @@ namespace Taxually.TechnicalTest.BusinessLogic
     {
         public async Task Register(VatRegistrationRequest request)
         {
-            switch (request.Country)
+            try
             {
-                case "GB":
-                    await RegisterVatNumberForGB(request);
-                    break;
-                case "FR":
-                    await RegisterVatNumberForFR(request);
-                    break;
-                case "DE":
-                    await RegisterVatNumberForDE();
-                    break;
-                default:
-                    throw new Exception("Country not supported");
+                switch (request.Country)
+                {
+                    case "GB":
+                        await RegisterVatNumberForGB(request);
+                        break;
+                    case "FR":
+                        await RegisterVatNumberForFR(request);
+                        break;
+                    case "DE":
+                        await RegisterVatNumberForDE();
+                        break;
+                    default:
+                        throw new Exception("Country not supported");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
             }
         }
 
